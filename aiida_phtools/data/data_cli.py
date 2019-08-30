@@ -20,7 +20,7 @@ def list_():  # pylint: disable=redefined-builtin
     )  # Important to load the dbenv in the last moment
 
     from aiida.orm.querybuilder import QueryBuilder
-    from aiida.orm import DataFactory
+    from aiida.plugins import DataFactory
     MultiplyParameters = DataFactory('phtools.factors')
 
     qb = QueryBuilder()

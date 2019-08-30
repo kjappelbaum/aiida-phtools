@@ -1,18 +1,18 @@
 """
 Distance matrix work chain.
 """
-from aiida.orm import DataFactory, CalculationFactory
-from aiida.orm.code import Code
+from aiida.plugins import DataFactory, CalculationFactory
+from aiida.orm import Code
 #from aiida.orm.querybuilder import QueryBuilder
 
-from aiida.orm.data.cif import CifData
-from aiida.orm.data.parameter import ParameterData
-from aiida.orm.data.singlefile import SinglefileData
+from aiida.orm.nodes.data.cif import CifData
+from aiida.orm import Dict
+from aiida.orm import SinglefileData
 #from aiida.orm.data.base import Int, Float, Str
 
-from aiida.work.workchain import WorkChain, ToContext, Outputs
-from aiida.work.run import submit
-from aiida.work.workfunction import workfunction
+from aiida.engine import WorkChain, ToContext, Outputs
+from aiida.engine import submit
+from aiida.engine import workfunction
 
 
 class DistanceMatrixWorkChain(WorkChain):
@@ -40,7 +40,7 @@ class DistanceMatrixWorkChain(WorkChain):
         spec.input(
             "parameters",
             valid_type=ParameterData,
-            default=ParameterData(dict={}),
+            default=Dict(dict={}),
             required=False)
 
         spec.outline(

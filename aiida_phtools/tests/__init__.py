@@ -1,7 +1,7 @@
 """ Helper functions and classes for tests
 """
 import os
-import aiida.utils.fixtures
+import aiida.manage.fixtures
 import unittest
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -28,10 +28,10 @@ def get_path_to_executable(executable):
 def get_computer(name='localhost'):
     """Setup localhost computer"""
     from aiida.orm import Computer
-    from aiida.common.exceptions import NotExistent
+    from aiida.common import NotExistent
 
     try:
-        computer = Computer.get(name)
+        computer = Computer.get.objects.get(name)
     except NotExistent:
 
         import tempfile
@@ -57,7 +57,7 @@ executables = {
 def get_code(entry_point, computer_name='localhost'):
     """Setup code on localhost computer"""
     from aiida.orm import Code
-    from aiida.common.exceptions import NotExistent
+    from aiida.common import NotExistent
 
     computer = get_computer(computer_name)
     executable = executables[entry_point]
@@ -87,7 +87,7 @@ def get_temp_folder():
     return Folder(tempfile.mkdtemp())
 
 
-fixture_manager = aiida.utils.fixtures.FixtureManager()
+fixture_manager = aiida.manage.fixtures.FixtureManager()
 fixture_manager.backend = get_backend()
 
 
@@ -114,7 +114,7 @@ class PluginTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        from aiida.utils.capturing import Capturing
+        from aiida.common.utils.capturing import Capturing
         cls.fixture_manager = fixture_manager
         if not fixture_manager.has_profile_open():
             with Capturing():

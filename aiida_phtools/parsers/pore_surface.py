@@ -4,9 +4,9 @@ Parsers provided by the plugin
 Register parsers via the "aiida.parsers" entry point in setup.json.
 """
 from aiida.parsers.parser import Parser
-from aiida.parsers.exceptions import OutputParsingError
+from aiida.common import OutputParsingError
 
-from aiida.orm import CalculationFactory
+from aiida.plugins import CalculationFactory
 PoreSurfaceCalculation = CalculationFactory('phtools.surface')
 
 
@@ -26,7 +26,7 @@ class PoreSurfaceParser(Parser):
             raise OutputParsingError("Can only parse PoreSurfaceCalculation")
 
     # pylint: disable=protected-access
-    def parse_with_retrieved(self, retrieved):
+    def parse(self, **kwargs):
         """
         Parse output data folder, store results in database.
 
@@ -39,7 +39,7 @@ class PoreSurfaceParser(Parser):
           * ``node_list``: list of new nodes to be stored in the db
             (as a list of tuples ``(link_name, node)``)
         """
-        from aiida.orm.data.singlefile import SinglefileData
+        from aiida.orm import SinglefileData
         success = False
         node_list = []
 

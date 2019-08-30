@@ -18,8 +18,8 @@ class TestDistanceMatrixWorkChain(pt.PluginTestCase):
 
     def test_run_workchain(self):
         """Test running the WorkChain"""
-        from aiida.work.run import run
-        from aiida.orm.data.cif import CifData
+        from aiida.engine import run
+        from aiida.orm.nodes.data.cif import CifData
         from aiida_phtools.workflows.dmatrix import DistanceMatrixWorkChain
 
         structure = CifData(

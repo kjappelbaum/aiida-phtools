@@ -4,17 +4,17 @@ Calculations provided by plugin
 Register calculations via the "aiida.calculations" entry point in setup.json.
 """
 
-from aiida.orm.calculation.job import JobCalculation
+from aiida.engine import CalcJob
 from aiida.common.utils import classproperty
-from aiida.common.exceptions import (InputValidationError, ValidationError)
-from aiida.common.datastructures import (CalcInfo, CodeInfo)
-from aiida.orm import DataFactory
+from aiida.common import (InputValidationError, ValidationError)
+from aiida.common import (CalcInfo, CodeInfo)
+from aiida.plugins import DataFactory
 
 ParameterData = DataFactory('parameter')
 SinglefileData = DataFactory('singlefile')
 
 
-class DistanceMatrixCalculation(JobCalculation):
+class DistanceMatrixCalculation(CalcJob):
     """
     AiiDA calculation plugin for simple "multiplication"
     
@@ -91,7 +91,7 @@ class DistanceMatrixCalculation(JobCalculation):
 
         return code, surface_sample, cell
 
-    def _prepare_for_submission(self, tempfolder, inputdict):
+    def prepare_for_submission(self, tempfolder, inputdict):
         """
         Create input files.
 

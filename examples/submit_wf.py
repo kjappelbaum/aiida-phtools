@@ -5,8 +5,8 @@ import aiida_phtools.tests as pt
 import aiida_zeopp.tests as zt
 import aiida_gudhi.tests as gt
 
-from aiida.work.run import submit
-from aiida.orm.data.cif import CifData
+from aiida.engine import submit
+from aiida.orm.nodes.data.cif import CifData
 from aiida_zeopp.tests import TEST_DIR
 
 structure = CifData(

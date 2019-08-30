@@ -25,7 +25,7 @@ class TestPoreSurface(pt.PluginTestCase):
         calc.set_resources({"num_machines": 1, "num_mpiprocs_per_machine": 1})
 
         # Prepare input parameters
-        from aiida.orm import DataFactory
+        from aiida.plugins import DataFactory
         PoreSurfaceParameters = DataFactory('phtools.surface')
         d = {
             'accessible_surface_area': 4464.02,

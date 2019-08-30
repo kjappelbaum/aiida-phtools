@@ -4,7 +4,7 @@ Data types provided by plugin
 Register data types via the "aiida.data" entry point in setup.json.
 """
 from voluptuous import Schema, Optional, Required, Any
-from aiida.orm.data.parameter import ParameterData
+from aiida.orm import Dict
 
 sampling_methods = {
     'random': 1,
@@ -23,7 +23,7 @@ cmdline_parameters = {
 }
 
 
-class PoreSurfaceParameters(ParameterData):
+class PoreSurfaceParameters(Dict):
     """
     Input parameters for surface calculation.
     """

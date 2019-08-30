@@ -4,9 +4,9 @@ Parsers provided by the plugin
 Register parsers via the "aiida.parsers" entry point in setup.json.
 """
 from aiida.parsers.parser import Parser
-from aiida.parsers.exceptions import OutputParsingError
+from aiida.common import OutputParsingError
 
-from aiida.orm import CalculationFactory
+from aiida.plugins import CalculationFactory
 DistanceMatrixCalculation = CalculationFactory('phtools.dmatrix')
 
 
@@ -27,7 +27,7 @@ class DistanceMatrixParser(Parser):
                 "Can only parse DistanceMatrixCalculation")
 
     # pylint: disable=protected-access
-    def parse_with_retrieved(self, retrieved):
+    def parse(self, **kwargs):
         """
         Parse output data folder, store results in database.
 

@@ -25,7 +25,7 @@ class TestDistanceMatrix(pt.PluginTestCase):
         calc.set_resources({"num_machines": 1, "num_mpiprocs_per_machine": 1})
 
         # Prepare input parameters
-        from aiida.orm import DataFactory
+        from aiida.plugins import DataFactory
         SinglefileData = DataFactory('singlefile')
         surface_sample = SinglefileData(
             file=os.path.join(TEST_DIR, 'HKUST-1.vsa'))
